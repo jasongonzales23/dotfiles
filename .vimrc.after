@@ -1,0 +1,36 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+map <leader>r :call RenameFile()<cr>
+
+colors molokai
+
+" Whitespace stuff
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set list listchars=tab:\ \ ,trail:·
+
+"Highlight tabs and trailing spaces
+set list listchars=tab:>-,trail:.,extends:>
+
+set nu!
+set clipboard=unnamed
+
+unlet g:ctrlp_custom_ignore 
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\'
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
