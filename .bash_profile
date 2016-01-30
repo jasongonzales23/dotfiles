@@ -47,8 +47,6 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
-export AWS_ACCESS_KEY=AKIAITBAB66OJPPX4ZGA
-export AWS_SECRET_KEY=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
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
 
