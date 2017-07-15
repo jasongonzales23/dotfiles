@@ -47,17 +47,7 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
-
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
-
-export DATABASE_HOST=db
-export DATABASE_USER=postgres
-export DATABASE_NAME=portal_production
-export PATH="/usr/local/heroku/bin:$PATH"
-
-export PATH="$PATH:$HOME/activator-dist-1.3.5/"
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 export PATH="$PATH:/usr/local/mysql/bin"
 
@@ -69,4 +59,22 @@ source ~/.profile
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
+export PATH="$PATH:/usr/local/bin/mongo"
+
+export VISUAL='mvim -v'
+export EDITOR="$VISUAL"
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
+
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+source "$HOME/.avn/bin/avn.sh"
