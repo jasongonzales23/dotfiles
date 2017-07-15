@@ -25,7 +25,14 @@ Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
 Plugin 'othree/vim-jsx'
 Plugin 'mattn/emmet-vim'
-
+Plugin 'cespare/vim-toml'
+Plugin 'henrik/vim-yaml-flattener'
+Plugin 'rking/ag.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'fatih/vim-go'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'christoomey/vim-sort-motion'
+Plugin 'Valloric/YouCompleteMe'
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -37,6 +44,9 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Let ctrl p show dotfiles
 let g:ctrlp_show_hidden = 1
+
+" jsx
+let g:jsx_ext_required = 0
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -181,3 +191,52 @@ function! FindAndReplace()
     :exec "argdo set eventignore-=Syntax \| %s/" . find_this ."/" . replace_with "/g " . "\| w"
 endfunction
 map <leader>f :call FindAndReplace()<cr>noremap <C-H> <C-W><C-H>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STRIP OUT THE CARET M BULLSHITE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! StripCaretM()
+  exec ':%s/
+//g'
+endfunction
+map <leader>m :call StripCaretM()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MAKE UNDO BETTER
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set undofile
+" set undodir=~/.vim/undodir
+" set directory=~/.vim/swap
+
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+" golang
+let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+let g:syntastic_mode_map = { 'mode': 'active' }
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>l <Plug>(go-metalinter)
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_auto_type_info = 1
+let g:go_snippet_engine = "ultisnips"
+let g:go_metalinter_autosave = 0
+let g:go_metalinter_enabled = ['golint', 'gotype', 'deadcode', 'dupl',
+      \ 'staticcheck', 'goimports', 'varcheck', 'structcheck', 'aligncheck',
+      \ 'errcheck', 'lll', 'goconst', 'gosimple', 'gocyclo', 'ineffassign',
+      \ 'interfacer', 'unconvert']
+let g:go_fmt_command = "goimports"
