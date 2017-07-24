@@ -7,6 +7,7 @@ these are dope
 - node
 - node version management
 - yarn
+- AWS CLI with all the yummy auth
 
 # global packages
 - jscodeshift
