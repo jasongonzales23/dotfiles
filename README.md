@@ -5,8 +5,9 @@ these are dope
 # other things you may need
 - homebrew
 - node
+- xcode install
+- upgrade vim to mvim (https://stackoverflow.com/questions/21694327/installing-vim-with-homebrew)
 - vundle
-- upgrade vim?
 - tmux
 - node version management
 - yarn
