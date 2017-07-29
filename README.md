@@ -5,6 +5,7 @@ these are dope
 # other things you may need
 - homebrew
 - node
+- tmux
 - node version management
 - yarn
 - AWS CLI with all the yummy auth
