@@ -14,6 +14,7 @@ these are dope
 - rbenv $ (https://github.com/rbenv/rbenv)
 - yarn $
 - AWS CLI with all the yummy auth
+- Karabiner (https://pqrs.org/osx/karabiner/)
 
 # global packages
 - jscodeshift
