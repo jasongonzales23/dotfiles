@@ -5,6 +5,7 @@ these are dope
 # other things you may need
 - homebrew
 - node
+- vundle
 - upgrade vim?
 - tmux
 - node version management
