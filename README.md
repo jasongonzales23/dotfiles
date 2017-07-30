@@ -7,7 +7,8 @@ these are dope
 - node $
 - xcode install
 - upgrade vim to mvim (https://stackoverflow.com/questions/21694327/installing-vim-with-homebrew)
-- vundle 
+- vundle
+- brew install reattach-to-user-namespace
 - tmux $
 - node version management (https://github.com/creationix/nvm)
 - avn (https://github.com/wbyoung/avn)
