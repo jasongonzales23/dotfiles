@@ -8,6 +8,7 @@ these are dope
 - xcode install
 - upgrade vim to mvim (https://stackoverflow.com/questions/21694327/installing-vim-with-homebrew)
 - vundle
+- YouCompleteMe install with JS support (https://github.com/Valloric/YouCompleteMe#mac-os-x)
 - brew install reattach-to-user-namespace
 - tmux $
 - node version management (https://github.com/creationix/nvm)
