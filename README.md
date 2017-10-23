@@ -19,6 +19,7 @@ these are dope
 - the_silver_searcher $
 - AWS CLI with all the yummy auth
 - Karabiner (https://pqrs.org/osx/karabiner/)
+- Java `brew cask install caskroom/versions/java8`
 
 # global packages
 - jscodeshift
