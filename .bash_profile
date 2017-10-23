@@ -47,7 +47,7 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/Home
 
 export PATH="$PATH:/usr/local/mysql/bin"
 
@@ -78,3 +78,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 source "$HOME/.avn/bin/avn.sh"
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+# for AWS
+export PATH=~/Library/Python/2.7/bin:$PATH
+export PATH=/usr/bin/python:$PATH
