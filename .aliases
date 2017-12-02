@@ -146,3 +146,8 @@ alias reload="exec $SHELL -l"
 #run vundle plugin installation
 alias vundle="vim +PluginInstall +qall"
 alias vim="mvim -v"
+
+#clean up after react-native ios
+alias clrct="watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && yarn cache clean && yarn install"
+
+alias delmerged="git branch --merged | egrep -v '(^\*|master|develop)' | xargs git branch -d"

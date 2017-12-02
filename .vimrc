@@ -14,7 +14,7 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-Plugin 'https://github.com/kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'flazz/vim-colorschemes'
@@ -32,7 +32,22 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'christoomey/vim-sort-motion'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'vimwiki/vimwiki'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+"
+" ES2015 code snippets (Optional)
+Plugin 'epilande/vim-es2015-snippets'
+
+" React code snippets
+Plugin 'epilande/vim-react-snippets'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'prettier/vim-prettier'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
+Plugin 'scrooloose/syntastic'
+
+" Plugin 'Valloric/YouCompleteMe'
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -196,8 +211,7 @@ map <leader>f :call FindAndReplace()<cr>noremap <C-H> <C-W><C-H>
 " STRIP OUT THE CARET M BULLSHITE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! StripCaretM()
-  exec ':%s/
-//g'
+  exec ':%s///g'
 endfunction
 map <leader>m :call StripCaretM()<cr>
 
@@ -240,3 +254,28 @@ let g:go_metalinter_enabled = ['golint', 'gotype', 'deadcode', 'dupl',
       \ 'errcheck', 'lll', 'goconst', 'gosimple', 'gocyclo', 'ineffassign',
       \ 'interfacer', 'unconvert']
 let g:go_fmt_command = "goimports"
+
+
+" Console log from insert mode; Puts focus inside parentheses
+imap cll console.log()<Esc><S-f>(a
+" Console log from visual mode on next line, puts visual selection inside parentheses
+vmap cll yocll<Esc>p
+" Console log from normal mode, inserted on next line with word your on inside parentheses
+nmap cll yiwocll<Esc>p
+
+"enable keyboard shortcuts
+let g:tern_map_keys=1
+"show argument hints
+let g:tern_show_argument_hints='on_hold'
+
+" prettier
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
+
+" autoload vim
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost ~/.vimrc source $MYVIMRC
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
