@@ -46,6 +46,8 @@ Plugin 'ternjs/tern_for_vim'
 Plugin 'prettier/vim-prettier'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'scrooloose/syntastic'
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " Plugin 'Valloric/YouCompleteMe'
 " Trigger configuration. Do not use <tab> if you use
@@ -64,8 +66,6 @@ let g:ctrlp_show_hidden = 1
 let g:jsx_ext_required = 0
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
 
 " Colors
  set background=dark
@@ -89,12 +89,6 @@ set encoding=utf-8 nobomb
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-if exists("&undodir")
-  set undodir=~/.vim/undo
-endif
 
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
@@ -218,9 +212,16 @@ map <leader>m :call StripCaretM()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAKE UNDO BETTER
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set undofile
-" set undodir=~/.vim/undodir
-" set directory=~/.vim/swap
+set undofile
+set undodir=~/.vim/undodir
+"set directory=~/.vim/swap
+
+" Centralize backups, swapfiles and undo history
+set backupdir=~/.vim/backups
+"set directory=~/.vim/swaps
+if exists("&undodir")
+  set undodir=~/.vim/undo
+endif
 
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 " golang
@@ -255,6 +256,51 @@ let g:go_metalinter_enabled = ['golint', 'gotype', 'deadcode', 'dupl',
       \ 'interfacer', 'unconvert']
 let g:go_fmt_command = "goimports"
 
+" statusline
+"
+" %< means truncate on the left if too long
+" %F is full path to the file we are editing
+set statusline=%<%F
+" %m shows [+] if the file is modified but not saved
+set statusline+=%m
+" %r shows [RO] if a file is read-only
+set statusline+=%r
+" %h shows [Help] if we are in a help buffer
+set statusline+=%h
+" %w shows [Preview] if we are in a preview window
+set statusline+=%w
+" separation point between the left and right items
+set statusline+=%=
+" prints the fileformat; that is, the kind of newline (one of unix, dos or
+" mac)
+" (If you type `:set fileformat?`, vim will tell you the current file
+" format)
+set statusline+=%{&fileformat}
+" a literal forward slash
+set statusline+=/
+" %Y shows the filetype, such as VIM or HTML or GO
+set statusline+=%Y
+" %l shows the line number, and %8l uses 8 left-padded spaces to do so
+set statusline+=%8l
+" a literal comma
+set statusline+=,
+" %v shows the virtual column number;
+" instead of counting a tab as one char, it counts it as the number
+" of spaces it uses in the display
+" %-8v leaves 8 spaces to the right to do so
+set statusline+=%-8v
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SYNTASTIC CONFIG
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_javascript_checkers = ['eslint']
 
 " Console log from insert mode; Puts focus inside parentheses
 imap cll console.log()<Esc><S-f>(a
