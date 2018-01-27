@@ -1,6 +1,8 @@
 " Make Vim more useful
 set nocompatible
 filetype off                  " required
+set ttyfast
+set lazyredraw
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -25,11 +27,8 @@ Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
 Plugin 'othree/vim-jsx'
 Plugin 'mattn/emmet-vim'
-Plugin 'cespare/vim-toml'
 Plugin 'henrik/vim-yaml-flattener'
 Plugin 'rking/ag.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'christoomey/vim-sort-motion'
 Plugin 'vimwiki/vimwiki'
@@ -43,9 +42,9 @@ Plugin 'epilande/vim-es2015-snippets'
 " React code snippets
 Plugin 'epilande/vim-react-snippets'
 Plugin 'ternjs/tern_for_vim'
-Plugin 'prettier/vim-prettier'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -87,8 +86,9 @@ set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
 " Don’t add empty newlines at the end of files
-set binary
-set noeol
+"set binary
+"set noeol
+set nofixendofline
 
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
@@ -205,7 +205,8 @@ map <leader>f :call FindAndReplace()<cr>noremap <C-H> <C-W><C-H>
 " STRIP OUT THE CARET M BULLSHITE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! StripCaretM()
-  exec ':%s///g'
+  exec ':%s/
+//g'
 endfunction
 map <leader>m :call StripCaretM()<cr>
 
@@ -222,39 +223,6 @@ set backupdir=~/.vim/backups
 if exists("&undodir")
   set undodir=~/.vim/undo
 endif
-
-set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
-" golang
-let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-let g:syntastic_mode_map = { 'mode': 'active' }
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-au FileType go nmap <Leader>l <Plug>(go-metalinter)
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info = 1
-let g:go_snippet_engine = "ultisnips"
-let g:go_metalinter_autosave = 0
-let g:go_metalinter_enabled = ['golint', 'gotype', 'deadcode', 'dupl',
-      \ 'staticcheck', 'goimports', 'varcheck', 'structcheck', 'aligncheck',
-      \ 'errcheck', 'lll', 'goconst', 'gosimple', 'gocyclo', 'ineffassign',
-      \ 'interfacer', 'unconvert']
-let g:go_fmt_command = "goimports"
 
 " statusline
 "
@@ -290,18 +258,6 @@ set statusline+=,
 " %-8v leaves 8 spaces to the right to do so
 set statusline+=%-8v
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SYNTASTIC CONFIG
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_javascript_checkers = ['eslint']
-
 " Console log from insert mode; Puts focus inside parentheses
 imap cll console.log()<Esc><S-f>(a
 " Console log from visual mode on next line, puts visual selection inside parentheses
@@ -314,10 +270,24 @@ let g:tern_map_keys=1
 "show argument hints
 let g:tern_show_argument_hints='on_hold'
 
-" prettier
-let g:prettier#quickfix_enabled = 0
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
+" After this is configured, :ALEFix will try and fix your JS code with ESLint.
+let g:ale_fixers = { 'javascript': ['eslint'], }
+
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
+let g:ale_fix_on_save = 1
+
+" Enable completion where available.
+let g:ale_completion_enabled = 1
+
+" Always leave gutter open
+" let g:ale_sign_column_always = 1
+
+let g:ale_lint_delay = 20
+let g:ale_completion_delay = 10
+let g:ale_lint_on_enter = 1
+let g:ale_open_list = 1
+let g:ale_javascript_prettier_use_local_config = 1
 
 " autoload vim
 augroup reload_vimrc " {
