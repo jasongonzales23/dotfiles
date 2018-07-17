@@ -20,6 +20,7 @@ these are dope
 - the_silver_searcher $
 - vimwiki
 - github hub
+- tern
 - w0rp/ALE
 - Java `brew cask install caskroom/versions/java8`
 
