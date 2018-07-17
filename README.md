@@ -9,6 +9,7 @@ these are dope
 - upgrade vim to mvim (https://stackoverflow.com/questions/21694327/installing-vim-with-homebrew)
 - vundle
 - YouCompleteMe install with JS support (https://github.com/Valloric/YouCompleteMe#mac-os-x)
+  - https://gist.github.com/ChengLong/6208775
 - brew install reattach-to-user-namespace
 - tmux $
 - node version management (https://github.com/creationix/nvm)
@@ -17,7 +18,7 @@ these are dope
 - yarn $
 - `cd /usr/local/etc/bash_completion.d/ && curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash`
 - the_silver_searcher $
-- AWS CLI with all the yummy auth
+- vimwiki
 - github hub
 - w0rp/ALE
 - Java `brew cask install caskroom/versions/java8`
