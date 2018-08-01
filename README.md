@@ -16,7 +16,7 @@ these are dope
 - avn (https://github.com/wbyoung/avn)
 - rbenv $ (https://github.com/rbenv/rbenv)
 - yarn $
-- `cd /usr/local/etc/bash_completion.d/ && curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash`
+- brew install git bash-completion
 - the_silver_searcher $
 - vimwiki
 - github hub
