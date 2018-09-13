@@ -1,6 +1,9 @@
 " Make Vim more useful
 set nocompatible
-filetype off                  " required
+filetype plugin on 
+" off
+" Enable syntax highlighting
+syntax on
 set ttyfast
 set lazyredraw
 
@@ -33,17 +36,18 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'christoomey/vim-sort-motion'
 Plugin 'vimwiki/vimwiki'
 
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-"
+
 " ES2015 code snippets (Optional)
 Plugin 'epilande/vim-es2015-snippets'
 
 " React code snippets
 Plugin 'epilande/vim-react-snippets'
-Plugin 'ternjs/tern_for_vim'
+"Plugin 'ternjs/tern_for_vim'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'w0rp/ale'
+Plugin 'vim-airline/vim-airline'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -51,12 +55,12 @@ filetype plugin indent on    " required
 " Plugin 'Valloric/YouCompleteMe'
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "
 " " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsEditSplit="vertical"
 
 " Let ctrl p show dotfiles
 let g:ctrlp_show_hidden = 1
@@ -67,8 +71,8 @@ let g:jsx_ext_required = 0
 " All of your Plugins must be added before the following line
 
 " Colors
- set background=dark
- colorscheme molokai
+set background=dark
+colorscheme solarized
 
 let mapleader = "\\"
 
@@ -99,8 +103,6 @@ set modelines=4
 " Enable per-directory .vimrc files and disable unsafe commands in them
 set exrc
 set secure
-" Enable syntax highlighting
-syntax on
 " Highlight current line
 set cursorline
 " Show “invisible” characters
@@ -266,9 +268,9 @@ vmap cll yocll<Esc>p
 nmap cll yiwocll<Esc>p
 
 "enable keyboard shortcuts
-let g:tern_map_keys=1
+"let g:tern_map_keys=1
 "show argument hints
-let g:tern_show_argument_hints='on_hold'
+"let g:tern_show_argument_hints='on_hold'
 
 " After this is configured, :ALEFix will try and fix your JS code with ESLint.
 let g:ale_fixers = { 'javascript': ['eslint'], }
@@ -278,7 +280,7 @@ let g:ale_fixers = { 'javascript': ['eslint'], }
 let g:ale_fix_on_save = 1
 
 " Enable completion where available.
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1
 
 " Always leave gutter open
 " let g:ale_sign_column_always = 1
@@ -288,6 +290,14 @@ let g:ale_completion_delay = 10
 let g:ale_lint_on_enter = 1
 let g:ale_open_list = 1
 let g:ale_javascript_prettier_use_local_config = 1
+
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+let &colorcolumn=join(range(81,999),",")
+
+" Import FZF
+set rtp+=/usr/local/opt/fzf
+
+inoremap '' `
 
 " autoload vim
 augroup reload_vimrc " {
